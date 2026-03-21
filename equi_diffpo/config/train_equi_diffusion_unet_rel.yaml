@@ -105,7 +105,8 @@ training:
   tqdm_interval_sec: 1.0
 
 logging:
-  project: diffusion_policy_${task_name}_vel
+  project: RL2
+  entity: alfred11x-georgia-institute-of-technology
   resume: True
   mode: online
   name: equidiff_demo${n_demo}

@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/home/lidar/miniforge3/envs/equidiff/bin/python -c \"import torch; print\\(torch.__version__, torch.cuda.is_available\\(\\)\\)\")",
+      "Bash(TMPDIR=/dev/shm conda run -n equidiff pip install --cache-dir /dev/shm/pip_cache \"robosuite-task-zoo @ https://github.com/pointW/robosuite-task-zoo/archive/0f8a7b2fa5d192e4e8800bebfe8090b28926f3ed.tar.gz\")",
+      "Bash(MUJOCO_GL=osmesa PYOPENGL_PLATFORM=osmesa conda run -n equidiff python equi_diffpo/scripts/dataset_states_to_obs.py --input data/robomimic/datasets/stack_d1/stack_d1.hdf5 --output data/robomimic/datasets/stack_d1/stack_d1_voxel.hdf5 --num_workers=8)",
+      "Bash(ldconfig -p)",
+      "Bash(dpkg -l libosmesa6-dev)",
+      "Bash(sudo rm:*)",
+      "Bash(DISPLAY=$DISPLAY:-:0 /home/lidar/miniforge3/envs/equidiff/bin/python train.py --config-name=train_equi_diffusion_unet_voxel_rel.yaml dataset_path=/home/lidar/Downloads/stack_d1_voxel.hdf5 task.dataset.dataset_path=/home/lidar/Downloads/stack_d1_voxel.hdf5 task.env_runner.dataset_path=/home/lidar/Downloads/stack_d1_voxel.hdf5)",
+      "Bash(/home/lidar/miniforge3/envs/equidiff/bin/python train.py --config-name=train_equi_diffusion_unet_voxel_rel.yaml dataset_path=/home/lidar/Downloads/stack_d1_voxel.hdf5 task.dataset.dataset_path=/home/lidar/Downloads/stack_d1_voxel.hdf5 task.env_runner.dataset_path=/home/lidar/Downloads/stack_d1_voxel.hdf5)",
+      "Bash(ps -p 638338 -o etime=)",
+      "Read(//proc/102582/**)",
+      "Read(//home/lidar/Documents/equidiff/**)",
+      "Bash(xargs -I{} sh -c \"df -h {} 2>/dev/null | tail -1\")",
+      "Bash(python3 -c \"import shutil; s=shutil.disk_usage\\(''/home/lidar''\\); print\\(f''Total: {s.total/1e9:.1f}G, Used: {s.used/1e9:.1f}G, Free: {s.free/1e9:.1f}G''\\)\")",
+      "Bash(python3 -c \"import shutil; s=shutil.disk_usage\\(''/home/lidar''\\); print\\(s.total//1e9, s.used//1e9, s.free//1e9\\)\")"
+    ],
+    "additionalDirectories": [
+      "/home/lidar/Documents/equidiff/data/outputs"
+    ]
+  }
+}

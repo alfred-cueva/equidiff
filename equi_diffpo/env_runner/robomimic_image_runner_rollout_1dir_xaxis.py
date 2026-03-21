@@ -121,7 +121,6 @@ class RobomimicImageRunner(BaseImageRunner):
                     ),
                     file_path=None,
                     steps_per_render=steps_per_render,
-                    **render_kwargs
                 ),
                 n_obs_steps=n_obs_steps,
                 n_action_steps=n_action_steps,
@@ -156,7 +155,6 @@ class RobomimicImageRunner(BaseImageRunner):
                     ),
                     file_path=None,
                     steps_per_render=steps_per_render,
-                    **render_kwargs
                 ),
                 n_obs_steps=n_obs_steps,
                 n_action_steps=n_action_steps,
