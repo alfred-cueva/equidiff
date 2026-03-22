@@ -103,6 +103,56 @@ To train Equivariant Diffusion Policy (with absolute pose control) in Stack D1 t
 python train.py --config-name=train_equi_diffusion_unet_voxel_abs task_name=stack_d1 n_demo=100
 ```
 
+## Rollout / Evaluation
+
+After training, run evaluation with:
+```bash
+python rollout.py \
+  --ckpt data/outputs/<date>/<time>_equi_diff_<task>/checkpoints/latest.ckpt \
+  --dataset data/robomimic/datasets/<task>/<task>.hdf5 \
+  --n_test 20 \
+  --out rollouts_out
+```
+
+Example (stack_d1):
+```bash
+python rollout.py \
+  --ckpt data/outputs/2026.03.20/15.37.36_equi_diff_stack_d1/checkpoints/latest.ckpt \
+  --dataset data/robomimic/datasets/stack_d1/stack_d1.hdf5 \
+  --n_test 20 \
+  --out rollouts_out
+```
+
+
+
+To test with a moving object (x-axis), set `move_obj = True` in `equi_diffpo/env_runner/robomimic_image_runner_rollout_1dir_xaxis.py`.
+
+## Training settings used (Franka stack_d1)
+```bash
+python train.py --config-name=train_equi_diffusion_unet_rel \
+  task_name=stack_d1 \
+  dataloader.batch_size=64 \
+  policy.enc_n_hidden=64 \
+  n_demo=100 \
+  task.env_runner.n_test_vis=0 \
+  task.env_runner.n_train_vis=0
+```
+Results (image datasets): 16/20 static, 2/20 moving 
+
+square_d2 (batch_size=32 to fit GPU memory, keep default down_dims):
+```bash
+python train.py --config-name=train_equi_diffusion_unet_rel \
+  task_name=square_d2 \
+  dataloader.batch_size=32 \
+  policy.enc_n_hidden=64 \
+  n_demo=100 \
+  task.env_runner.n_test_vis=0 \
+  task.env_runner.n_train_vis=0
+```
+Note: reducing down_dims to [256,512,1024] fits memory but hurts performance (only 8% success). Use batch_size=32 with default down_dims instead.
+
+Results (image datasets):  WIP 
+
 ## License
 This repository is released under the MIT license. See [LICENSE](LICENSE) for additional details.
 
