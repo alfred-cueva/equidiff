@@ -139,19 +139,19 @@ python train.py --config-name=train_equi_diffusion_unet_rel \
 ```
 Results (image datasets): 16/20 static, 2/20 moving 
 
-square_d2 (batch_size=32 to fit GPU memory, keep default down_dims):
+square_d2 (batch_size=32 to fit GPU memory):
 ```bash
 python train.py --config-name=train_equi_diffusion_unet_rel \
   task_name=square_d2 \
   dataloader.batch_size=32 \
   policy.enc_n_hidden=64 \
+  policy.down_dims='[256,512,1024]' \
   n_demo=100 \
   task.env_runner.n_test_vis=0 \
   task.env_runner.n_train_vis=0
 ```
-Note: reducing down_dims to [256,512,1024] fits memory but hurts performance (only 8% success). Use batch_size=32 with default down_dims instead.
 
-Results (image datasets):  WIP 
+Results (image datasets): 3/20 static, 0/20 moving
 
 ## License
 This repository is released under the MIT license. See [LICENSE](LICENSE) for additional details.
